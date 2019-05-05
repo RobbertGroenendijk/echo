@@ -9,7 +9,7 @@
 
 #define NUM_CREATURES 1
 #define NUM_LIGHTS 120
-#define NUM_RESONATE 500
+#define NUM_RESONATE 100
 
 
 #define INSTALLATION_X 100 // Width
@@ -28,7 +28,7 @@ public:
 
   Creature creatureArray[1];
   Light lightArray[120];
-  ResonateBulb resonateArray[500];
+  ResonateBulb resonateArray[100];
 
 private:
 };

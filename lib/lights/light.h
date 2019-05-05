@@ -10,11 +10,13 @@
 #define data 25
 #define clock 24
 
+#define RESONATE_LENGTH 100
+
 class Light {
 public:
   Light();
   void setup(Vec2f _horizontalDimensions,Vec2f _verticalDimensions,Vec3f _location);
-  void passPointers(Vec3f *_creatureLocation);
+  void passPointers(Vec3f *_creatureLocation, ResonateBulb _resonateArray[]);
   void loop();
 
   void watchCreature();
@@ -27,6 +29,7 @@ public:
   Vec3f light_location;
 
   Vec3f *creature_location;
+  ResonateBulb *resonateArray;
 
   float brightness;
 

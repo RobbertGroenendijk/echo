@@ -16,8 +16,9 @@ void Light::setup(Vec2f _horizontalDimensions, Vec2f _verticalDimensions, Vec3f 
   //tlc.write();
 }
 
-void Light::passPointers(Vec3f *_creatureLocation) {
+void Light::passPointers(Vec3f *_creatureLocation, ResonateBulb _resonateArray[]) {
     creature_location = _creatureLocation;
+    resonateArray = _resonateArray; // Arrays are always passed as pointers in C / C++
 }
 
 void Light::loop() {
@@ -32,7 +33,16 @@ void Light::watchCreature() {
   }
 }
 void Light::watchResonate() {
+  for (int i = 0; i < RESONATE_LENGTH; i++) {
+    if (resonateArray[i].bulb_life > 0) {
+      float distance = light_location.distance(resonateArray[i].bulb_location);
+      float radius = resonateArray[i].bulb_radius;
 
+      if (distance < radius) {
+        plusBrightness(10);
+      }
+    }
+  }
 }
 void Light::plusBrightness(float _amount) {
   if (brightness < 255) {
