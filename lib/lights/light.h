@@ -4,11 +4,6 @@
 #include "Arduino.h"
 #include "../resonateBulb/resonateBulb.h"
 #include <VectorXf.h>
-#include <Adafruit_TLC59711.h>
-
-#define NUM_TLC59711 10
-#define data 25
-#define clock 24
 
 #define RESONATE_LENGTH 100
 
@@ -31,9 +26,7 @@ public:
   Vec3f *creature_location;
   ResonateBulb *resonateArray;
 
-  float brightness;
-
-  Adafruit_TLC59711 tlc = Adafruit_TLC59711(NUM_TLC59711, clock, data);
+  float brightness;  
 private:
 
 };

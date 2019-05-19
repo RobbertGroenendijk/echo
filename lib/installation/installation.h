@@ -6,11 +6,24 @@
 #include "creature.h"
 #include "light.h"
 #include "resonateBulb.h"
+#include "audioProcessor.h"
+
+#include <Audio.h>
+#include <Wire.h>
+#include <SPI.h>
+#include <SD.h>
+#include <SerialFlash.h>
+
+#include <SPI.h>
+#include <Adafruit_TLC59711.h>
 
 #define NUM_CREATURES 1
-#define NUM_LIGHTS 120
+#define NUM_LIGHTS 24
 #define NUM_RESONATE 100
 
+#define NUM_TLC59711 2
+#define data 29
+#define clock 30
 
 #define INSTALLATION_X 100 // Width
 #define INSTALLATION_Z 100 // Depth
@@ -20,6 +33,7 @@ class Installation {
 public:
   Installation();
   void setup();
+  void setupAudioProcessor(AudioOutputI2S* _i2s1,AudioInputI2S* _i2s2, AudioMixer4* _mixer1, AudioMixer4* _mixer2, AudioAnalyzePeak* _peak1, AudioSynthWaveformSine* _sine1, AudioEffectFreeverb* _freeverb1, AudioEffectDelay* _delay1, AudioControlSGTL5000* _sgtl5000);
   void loop();
   void resonate();
 
@@ -29,6 +43,9 @@ public:
   Creature creatureArray[1];
   Light lightArray[120];
   ResonateBulb resonateArray[100];
+  AudioProcessor audioProcessor;
+
+  Adafruit_TLC59711 tlc = Adafruit_TLC59711(NUM_TLC59711, clock, data);
 
 private:
 };

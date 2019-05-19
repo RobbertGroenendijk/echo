@@ -11,9 +11,6 @@ void Light::setup(Vec2f _horizontalDimensions, Vec2f _verticalDimensions, Vec3f 
   horizontalDimensions = _horizontalDimensions;
   verticalDimensions = _verticalDimensions;
   light_location = _location;
-
-  //tlc.begin();
-  //tlc.write();
 }
 
 void Light::passPointers(Vec3f *_creatureLocation, ResonateBulb _resonateArray[]) {
@@ -23,6 +20,8 @@ void Light::passPointers(Vec3f *_creatureLocation, ResonateBulb _resonateArray[]
 
 void Light::loop() {
   watchCreature();
+
+
 }
 void Light::watchCreature() {
   float distance = light_location.distance(*creature_location);
