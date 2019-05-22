@@ -11,6 +11,10 @@ void Light::setup(Vec2f _horizontalDimensions, Vec2f _verticalDimensions, Vec3f 
   horizontalDimensions = _horizontalDimensions;
   verticalDimensions = _verticalDimensions;
   light_location = _location;
+
+  brightness = 0;
+  creatureBrightness = 0;
+  resonateBrightness = 0;
 }
 
 void Light::passPointers(Vec3f *_creatureLocation, ResonateBulb _resonateArray[]) {
@@ -20,15 +24,18 @@ void Light::passPointers(Vec3f *_creatureLocation, ResonateBulb _resonateArray[]
 
 void Light::loop() {
   watchCreature();
+  watchResonate();
 
-
+  float trueBrightness = creatureBrightness + resonateBrightness;
+  brightness = constrain(trueBrightness,0,50000);
 }
 void Light::watchCreature() {
   float distance = light_location.distance(*creature_location);
   if (distance < 25) {
-    plusBrightness(4);
+    plusCreatureBrightness(2000);
   } else {
-    minBrightness(1);
+    minCreatureBrightness(500);
+    minResonateBrightness(1000); // Check here, in resonate function this will always be declining because of the amount of resonateBulbs
   }
 }
 void Light::watchResonate() {
@@ -38,18 +45,40 @@ void Light::watchResonate() {
       float radius = resonateArray[i].bulb_radius;
 
       if (distance < radius) {
-        plusBrightness(10);
+        plusResonateBrightness(5000);
       }
     }
   }
 }
-void Light::plusBrightness(float _amount) {
-  if (brightness < 255) {
-    brightness += _amount;
+void Light::plusCreatureBrightness(float _amount) {
+  if (creatureBrightness < 65000) {
+    creatureBrightness += _amount;
+  }
+  if (creatureBrightness > 65000) {
+    creatureBrightness = 65000;
   }
 }
-void Light::minBrightness(float _amount) {
-  if (brightness > 0) {
-    brightness -= _amount;
+void Light::minCreatureBrightness(float _amount) {
+  if (creatureBrightness > 0) {
+    creatureBrightness -= _amount;
+  }
+  if (creatureBrightness < 0) {
+    creatureBrightness = 0;
+  }
+}
+void Light::plusResonateBrightness(float _amount) {
+  if (resonateBrightness < 65000) {
+    resonateBrightness += _amount;
+  }
+  if (resonateBrightness > 65000) {
+    resonateBrightness = 65000;
+  }
+}
+void Light::minResonateBrightness(float _amount) {
+  if (resonateBrightness > 0) {
+    resonateBrightness -= _amount;
+  }
+  if (resonateBrightness < 0) {
+    resonateBrightness = 0;
   }
 }

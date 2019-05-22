@@ -16,8 +16,10 @@ public:
 
   void watchCreature();
   void watchResonate();
-  void plusBrightness(float _amount);
-  void minBrightness(float _amount);
+  void plusCreatureBrightness(float _amount);
+  void minCreatureBrightness(float _amount);
+  void plusResonateBrightness(float _amount);
+  void minResonateBrightness(float _amount);
 
   Vec2f horizontalDimensions;
   Vec2f verticalDimensions;
@@ -26,7 +28,9 @@ public:
   Vec3f *creature_location;
   ResonateBulb *resonateArray;
 
-  float brightness;  
+  float brightness;
+  float creatureBrightness;
+  float resonateBrightness;
 private:
 
 };

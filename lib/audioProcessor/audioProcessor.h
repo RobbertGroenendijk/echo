@@ -14,7 +14,7 @@
 class AudioProcessor {
 public:
   AudioProcessor();
-  void setup(AudioOutputI2S* _i2s1,AudioInputI2S* _i2s2, AudioMixer4* _mixer1, AudioMixer4* _mixer2, AudioAnalyzePeak* _peak1, AudioSynthWaveformSine* _sine1, AudioEffectFreeverb* _freeverb1, AudioEffectDelay* _delay1, AudioControlSGTL5000* _sgtl5000);
+  void setup(AudioOutputI2S* _i2s1,AudioInputI2S* _i2s2, AudioMixer4* _mixer1, AudioMixer4* _mixer2, AudioAnalyzePeak* _peak1, AudioSynthWaveformSine* _sine1, AudioEffectFreeverb* _freeverb1, AudioEffectDelay* _delay1, AudioControlSGTL5000* _sgtl5000, AudioSynthWaveformSineModulated* _sineFM1);
   void process();
 
   AudioOutputI2S *i2s1;
@@ -26,6 +26,11 @@ public:
   AudioEffectFreeverb *freeverb1;
   AudioEffectDelay *delay1;
   AudioControlSGTL5000 *sgtl5000;
+  AudioSynthWaveformSineModulated *sineFM1;
+
+  unsigned long previousMillis;
+
+  float currentPeak;
 };
 
 #endif

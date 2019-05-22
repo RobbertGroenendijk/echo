@@ -25,13 +25,13 @@ public:
   Vec2f horizontalDimensions;
   Vec2f verticalDimensions;
 
-  int size;
-  bool beserk;
-  float beserkTimer;
-
   Vec3f creature_location;
   Vec3f creature_acceleration;
   Vec3f creature_velocity;
+
+  int size;
+  bool beserk;
+  float beserkTimer;
 
   Vec3f target_location;
 
@@ -41,10 +41,6 @@ public:
   float maxInitForce;
   float maxBeserkSpeed;
   float maxBeserkForce;
-
-
-
-private:
 };
 
 #endif

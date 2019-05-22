@@ -9,7 +9,7 @@ void ResonateBulb::setup(Vec3f _creatureLocation, Vec3f _bulbDirection) {
   bulb_direction = _bulbDirection;
   bulb_direction.normalize();
 
-  bulb_speed = 5.0;
+  bulb_speed = 2.0;
 
   bulb_life = 100;
   bulb_ageRate = 0.5;
