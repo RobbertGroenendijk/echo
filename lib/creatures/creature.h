@@ -4,6 +4,8 @@
 #include "Arduino.h"
 #include <VectorXf.h>
 
+#include <math.h>
+
 class Creature {
 public:
   Creature();

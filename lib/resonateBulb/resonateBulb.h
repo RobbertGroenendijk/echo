@@ -13,8 +13,6 @@ public:
   void age();
   void checkEdges();
 
-
-
   Vec3f bulb_direction;
   Vec3f bulb_origin;
   Vec3f bulb_location;

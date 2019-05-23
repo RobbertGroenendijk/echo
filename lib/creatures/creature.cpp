@@ -9,17 +9,17 @@ void Creature::setup(Vec2f _horizontalDimensions, Vec2f _verticalDimensions) {
   horizontalDimensions = _horizontalDimensions;
   verticalDimensions = _verticalDimensions;
 
-  creature_location = Vec3f(40,40,40);
-  creature_acceleration = Vec3f(0,0,0);
-  creature_velocity = Vec3f(0,0,0);
+  creature_location = Vec3f(40.0,40.0,40.0);
+  creature_acceleration = Vec3f(0.0,0.0,0.0);
+  creature_velocity = Vec3f(0.0,0.0,0.0);
 
   target_location = Vec3f(
     random(0,horizontalDimensions.x),
     random(0,horizontalDimensions.y),
     random(0,verticalDimensions.y));
 
-  maxSpeed = 1;
-  maxForce = maxSpeed/100;
+  maxSpeed = 1.0;
+  maxForce = 0.01;
   maxInitSpeed = maxSpeed;
   maxInitForce = maxForce;
   maxBeserkSpeed = 0.5;
@@ -43,7 +43,6 @@ void Creature::loop() {
 }
 void Creature::applyForce(Vec3f _force) {
   creature_acceleration += _force;
-  //Serial.println(c_acc[0]);
 }
 void Creature::seek() {
   Vec3f desiredVector = target_location - creature_location;
@@ -51,12 +50,12 @@ void Creature::seek() {
   Vec3f f_desiredVector = n_desiredVector * maxForce;
   Vec3f steer = f_desiredVector - creature_velocity;
 
-  Vec3f force = steer * maxSpeed;
-
+  Vec3f force = steer;
   applyForce(force);
 }
 void Creature::move() {
   creature_velocity += creature_acceleration;
+  creature_velocity.limit(maxSpeed);
   creature_location += creature_velocity;
 
   creature_acceleration = Vec3f(0.0);
@@ -64,12 +63,12 @@ void Creature::move() {
 void Creature::checkTarget() {
   float distance = creature_location.distance(target_location);
 
-  if (distance < 10) {
+  if (distance < 10.0) {
     setTarget();
   }
 }
 void Creature::setTarget() {
-  target_location = Vec3f(random(0,80),random(0,80),random(0,80));
+  target_location = Vec3f(random(0.0,80.0),random(0.0,80.0),random(0.0,80.0));
 }
 void Creature::triggerBeserk() {
   if (!beserk) {

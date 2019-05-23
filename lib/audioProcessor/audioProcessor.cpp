@@ -30,7 +30,7 @@ void AudioProcessor::setup(AudioOutputI2S* _i2s1,AudioInputI2S* _i2s2, AudioMixe
   mixer2->gain(0,0.60);
   mixer2->gain(1,0.0);
 
-  delay1->delay(0, 500);
+  delay1->delay(0, 1);
 
   freeverb1->roomsize(0.8);
   freeverb1->damping(0.9);
