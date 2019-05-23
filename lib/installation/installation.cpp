@@ -40,9 +40,6 @@ void Installation::resonate() {
 }
 void Installation::loop() {
   //Serial.println("Installation loop");
-  //tlc.setPWM(120,60000);
-
-
   for (int i = 0; i < NUM_CREATURES; i++) {
     creatureArray[i].loop();
   }

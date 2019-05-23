@@ -19,6 +19,8 @@
 
 #include <VectorXf.h>
 
+#include "gammaArray.cpp"
+
 #define NUM_CREATURES 1
 #define NUM_LIGHTS 120
 #define NUM_RESONATE 100
@@ -173,9 +175,7 @@ private:
     Vec3f(29.0,73.0,31.0),
     Vec3f(24.0,75.0,45.0),
     Vec3f(42.0,75.0,19.0),
-
   };
-
 };
 
 #endif
