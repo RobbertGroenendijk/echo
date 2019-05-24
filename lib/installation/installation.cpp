@@ -26,13 +26,14 @@ void Installation::setup() {
 void Installation::setupAudioProcessor(AudioOutputI2S* _i2s1,AudioInputI2S* _i2s2, AudioMixer4* _mixer1, AudioMixer4* _mixer2, AudioAnalyzePeak* _peak1, AudioSynthWaveformSine* _sine1, AudioEffectFreeverb* _freeverb1, AudioEffectDelay* _delay1, AudioControlSGTL5000* _sgtl5000,AudioSynthWaveformSineModulated* _sineFM1) {
   audioProcessor.setup(_i2s1,_i2s2,_mixer1,_mixer2,_peak1,_sine1,_freeverb1,_delay1,_sgtl5000,_sineFM1);
 }
-void Installation::resonate() {
+void Installation::resonate(float _peak) {
   int newResonates = 0;
   for (int i = 0; i < NUM_RESONATE; i++) {
     if (resonateArray[i].bulb_life < 1) {
-      if (newResonates < 20) {
-        Vec3f newDirection = Vec3f(cos((TWO_PI/20)*newResonates),sin((TWO_PI/20)*newResonates));
-        resonateArray[i].setup(creatureArray[0].creature_location, newDirection);
+      if (newResonates < 10) {
+        Vec3f newDirection = Vec3f(cos((TWO_PI/10)*newResonates),sin((TWO_PI/10)*newResonates),sin(random(0,TWO_PI)));
+        resonateArray[i].setup(creatureArray[0].creature_location, newDirection, _peak);
+        newResonates++;
       }
     }
   }
@@ -47,26 +48,12 @@ void Installation::loop() {
   for (int i = 0; i < NUM_LIGHTS; i++) {
     lightArray[i].loop();
     tlc.setPWM(i,lightArray[i].brightness);
-    /*
-    float pwm = millis()%65000;
-    float truePWM = constrain(pwm,0,55000);
-    tlc.setPWM(i,truePWM);
-    */
   }
 
   float currentPeak = audioProcessor.currentPeak;
-  int bulbCounter = 0;
   if (currentPeak > 0.2) {
     if (millis() - resonateTimer > 500) {
-      for (int i = 0; i < NUM_RESONATE; i++) {
-          if (resonateArray[i].bulb_life == 0) {
-            if (bulbCounter < 10) {
-              Vec3f bulbDirection = Vec3f(cos((TWO_PI/10)*bulbCounter),sin((TWO_PI/10)*bulbCounter),0);
-              resonateArray[i].setup(creatureArray[0].creature_location, bulbDirection);
-              bulbCounter ++;
-            }
-          }
-        }
+      resonate(currentPeak);
         Serial.println("resonate");
         resonateTimer = millis();
     }
@@ -79,9 +66,10 @@ void Installation::loop() {
 
   } // End of resonateArray loop
 
-  audioProcessor.process();
+
   if (millis() - tlcTimer > 50) {
     tlc.write(); // Limit use of SPI for less audio interference
     tlcTimer = millis();
   }
+  audioProcessor.process();
 }

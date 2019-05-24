@@ -19,7 +19,7 @@ void Creature::setup(Vec2f _horizontalDimensions, Vec2f _verticalDimensions) {
     random(0,verticalDimensions.y));
 
   maxSpeed = 1.0;
-  maxForce = 0.01;
+  maxForce = 0.2;
   maxInitSpeed = maxSpeed;
   maxInitForce = maxForce;
   maxBeserkSpeed = 0.5;
@@ -57,6 +57,8 @@ void Creature::move() {
   creature_velocity += creature_acceleration;
   creature_velocity.limit(maxSpeed);
   creature_location += creature_velocity;
+
+  Serial.println(creature_velocity[0]);
 
   creature_acceleration = Vec3f(0.0);
 }

@@ -7,7 +7,7 @@
 class ResonateBulb {
 public:
   ResonateBulb();
-  void setup(Vec3f _creatureLocation, Vec3f _bulbDirection);
+  void setup(Vec3f _creatureLocation, Vec3f _bulbDirection,float _peak);
   void loop();
   void move();
   void age();

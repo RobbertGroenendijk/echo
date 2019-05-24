@@ -19,7 +19,7 @@
 
 #include <VectorXf.h>
 
-#include "gammaArray.cpp"
+//#include "gammaArray.cpp"
 
 #define NUM_CREATURES 1
 #define NUM_LIGHTS 120
@@ -39,7 +39,7 @@ public:
   void setup();
   void setupAudioProcessor(AudioOutputI2S* _i2s1,AudioInputI2S* _i2s2, AudioMixer4* _mixer1, AudioMixer4* _mixer2, AudioAnalyzePeak* _peak1, AudioSynthWaveformSine* _sine1, AudioEffectFreeverb* _freeverb1, AudioEffectDelay* _delay1, AudioControlSGTL5000* _sgtl5000, AudioSynthWaveformSineModulated* _sineFM1);
   void loop();
-  void resonate();
+  void resonate(float _peak);
 
   Vec2f horizontalDimensions;
   Vec2f verticalDimensions;

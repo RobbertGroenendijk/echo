@@ -3,7 +3,7 @@
 ResonateBulb::ResonateBulb() {
 
 }
-void ResonateBulb::setup(Vec3f _creatureLocation, Vec3f _bulbDirection) {
+void ResonateBulb::setup(Vec3f _creatureLocation, Vec3f _bulbDirection, float _peak) {
   bulb_location = _creatureLocation;
   bulb_origin = _creatureLocation;
   bulb_direction = _bulbDirection;
@@ -11,7 +11,7 @@ void ResonateBulb::setup(Vec3f _creatureLocation, Vec3f _bulbDirection) {
 
   bulb_speed = 5.0;
 
-  bulb_life = 200;
+  bulb_life = 50 * _peak;
   bulb_ageRate = 1;
   bulb_radius = 10;
 }
