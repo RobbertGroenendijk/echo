@@ -19,8 +19,6 @@
 
 #include <VectorXf.h>
 
-//#include "gammaArray.cpp"
-
 #define NUM_CREATURES 1
 #define NUM_LIGHTS 120
 #define NUM_RESONATE 100
