@@ -48,7 +48,7 @@ void Installation::loop() {
   for (int i = 0; i < NUM_LIGHTS; i++) {
     lightArray[i].loop();
     //tlc.setPWM(i,lightArray[i].brightness); // NO GAMMA CORRECTION
-    tlc.setPWM(i,int(&gamma16[int(lightArray[i].brightness)])); // GAMMA CORRECTION
+    tlc.setPWM(i,gamma16[int(lightArray[i].brightness)]); // GAMMA CORRECTION
   }
 
   float currentPeak = audioProcessor.currentPeak;
