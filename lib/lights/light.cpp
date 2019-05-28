@@ -27,15 +27,15 @@ void Light::loop() {
   watchResonate();
 
   float trueBrightness = creatureBrightness + resonateBrightness;
-  brightness = constrain(trueBrightness,0,60000);
+  brightness = constrain(trueBrightness,0,64000);
 }
 void Light::watchCreature() {
   float distance = light_location.distance(*creature_location);
   if (distance < 15) {
-    plusCreatureBrightness(100);
+    plusCreatureBrightness(300);
   } else {
-    minCreatureBrightness(50);
-    minResonateBrightness(100); // Check here, in resonate function this will always be declining because of the amount of resonateBulbs
+    minCreatureBrightness(150);
+    minResonateBrightness(500); // Check here, in resonate function this will always be declining because of the amount of resonateBulbs
   }
 }
 void Light::watchResonate() {
@@ -45,7 +45,7 @@ void Light::watchResonate() {
       float radius = resonateArray[i].bulb_radius;
 
       if (distance < radius) {
-        plusResonateBrightness(1500);
+        plusResonateBrightness(10000);
       }
     }
   }

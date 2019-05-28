@@ -30,7 +30,7 @@ void Installation::resonate(float _peak) {
   int newResonates = 0;
   for (int i = 0; i < NUM_RESONATE; i++) {
     if (resonateArray[i].bulb_life < 1) {
-      if (newResonates < 10) {
+      if (newResonates < 15) {
         Vec3f newDirection = Vec3f(cos((TWO_PI/10)*newResonates),sin((TWO_PI/10)*newResonates),sin(random(0,TWO_PI)));
         resonateArray[i].setup(creatureArray[0].creature_location, newDirection, _peak);
         newResonates++;
@@ -52,7 +52,7 @@ void Installation::loop() {
   }
 
   float currentPeak = audioProcessor.currentPeak;
-  if (currentPeak > 0.2) {
+  if (currentPeak > 0.1) {
     if (millis() - resonateTimer > 500) {
       resonate(currentPeak);
         Serial.println("resonate");

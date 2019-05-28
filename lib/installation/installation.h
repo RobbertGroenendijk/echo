@@ -29,8 +29,8 @@
 #define dataPin 29
 #define clockPin 30
 
-#define INSTALLATION_X 80 // Width
-#define INSTALLATION_Z 80 // Depth
+#define INSTALLATION_X 85 // Width
+#define INSTALLATION_Z 85 // Depth
 #define INSTALLATION_Y 80 // Height
 
 class Installation {
@@ -46,7 +46,7 @@ public:
 
   Creature creatureArray[1];
   Light lightArray[120];
-  ResonateBulb resonateArray[100];
+  ResonateBulb resonateArray[200];
   AudioProcessor audioProcessor;
 
   Adafruit_TLC59711 tlc = Adafruit_TLC59711(NUM_TLC59711, clockPin, dataPin);

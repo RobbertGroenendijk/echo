@@ -14,8 +14,8 @@ void Creature::setup(Vec2f _horizontalDimensions, Vec2f _verticalDimensions) {
   creature_velocity = Vec3f(0.0,0.0,0.0);
 
   target_location = Vec3f(
-    random(0,horizontalDimensions.x),
-    random(0,horizontalDimensions.y),
+    random(15,horizontalDimensions.x),
+    random(15,horizontalDimensions.y),
     random(0,verticalDimensions.y));
 
   maxSpeed = 1.0;
