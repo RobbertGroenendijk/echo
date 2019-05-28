@@ -19,7 +19,7 @@
 
 #include <VectorXf.h>
 
-//#include "../gammaCorrection/gammaCorrection.cpp"
+#include "../gammaCorrection/gammaCorrection.cpp"
 
 #define NUM_CREATURES 1
 #define NUM_LIGHTS 120
